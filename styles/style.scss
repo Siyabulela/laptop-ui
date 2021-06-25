@@ -1,3 +1,5 @@
+$pinkColor: #c36cbb;
+
 * {
   margin: 0;
   padding: 0;
@@ -22,16 +24,24 @@ header {
   margin: 5px;
   background: #5f5f79;
 }
-.logo-container,
-.nav-links,
-.cart {
-  display: flex;
-}
 .logo-container {
+  display: flex;
   flex: 1;
 }
-.nav-links li:nth-child(1) {
-  display: none;
+.nav-links {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  li {
+    &:nth-child(1) {
+      display: none;
+    }
+  }
+}
+.cart {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
 }
 .logo {
   font-weight: 400;
@@ -40,18 +50,10 @@ header {
 nav {
   flex: 2;
 }
-.nav-links {
-  list-style: none;
-  justify-content: space-around;
-}
 .nav-link {
   color: #5f5f79;
   text-decoration: none;
   font-size: 18px;
-}
-.cart {
-  flex: 1;
-  justify-content: flex-end;
 }
 .presentation {
   display: flex;
@@ -63,25 +65,27 @@ nav {
 .introduction {
   flex: 1;
 }
-.intro-text h1 {
-  font-size: 44px;
-  font-weight: 500;
-  background: linear-gradient(to right, #494964, #6f6f89);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.intro-text p {
-  margin-top: 5px;
-  font-size: 22px;
-  color: #585772;
+.intro-text {
+  h1 {
+    font-size: 44px;
+    font-weight: 500;
+    background: linear-gradient(to right, #494964, #6f6f89);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  p {
+    margin-top: 5px;
+    font-size: 22px;
+    color: #585772;
+  }
 }
 .cover {
   flex: 1;
-}
-.cover img {
-  height: 60vh;
-  filter: drop-shadow(0px 5px 3px black);
-  animation: drop 1.5s ease;
+  img {
+    height: 60vh;
+    filter: drop-shadow(0px 5px 3px black);
+    animation: drop 1.5s ease;
+  }
 }
 .cta {
   padding: 50px 0px 0px 0px;
@@ -102,7 +106,7 @@ nav {
   cursor: pointer;
   font-size: 16px;
   border: none;
-  color: white;
+  color: #fff;
   margin: 30px 0px 0px 30px;
 }
 .big-circle {
@@ -134,7 +138,6 @@ nav {
   position: absolute;
   right: 20%;
 }
-
 @keyframes drop {
   0% {
     opacity: 0;
@@ -153,30 +156,38 @@ nav {
     margin-top: 5vh;
     text-align: center;
   }
-  .intro-text h1 {
-    font-size: 30px;
-  }
-  .intro-text p {
-    font-size: 18px;
+  .intro-text {
+    h1 {
+      font-size: 30px;
+    }
+    p {
+      font-size: 18px;
+    }
   }
   .cta {
     padding: 10px 0px 0px 0px;
   }
   .laptop-select {
-    /* bottom: 5%; */
     right: 50%;
     width: 50%;
     transform: translate(50%, 5%);
   }
-  .cover img {
-    height: 400px;
+  .cover {
+    img {
+      height: 400px;
+    }
   }
-  .big-circle,
-  .mid-circle,
+  .big-circle {
+    opacity: 0.1;
+  }
+  .mid-circle {
+    opacity: 0.1;
+  }
   .small-circle {
     opacity: 0.1;
   }
 }
+/*  */
 @media screen and (max-width: 450px) {
   .cta {
     padding: 10px 0px 0px 0px;
@@ -184,28 +195,40 @@ nav {
   .cta-add {
     margin: 30px 0px 0px 0px;
   }
-  .cover img {
-    height: 270px;
+  .cover {
+    img {
+      height: 270px;
+    }
   }
-  .big-circle,
-  .mid-circle,
+  .big-circle {
+    display: none;
+  }
+  .mid-circle {
+    display: none;
+  }
   .small-circle {
     display: none;
   }
-  /*  */
-  .nav-links li:nth-child(1) {
-    display: unset;
-  }
-  nav {
-    position: relative;
-  }
-  .cart {
-    display: none;
-  }
-  .hamburger {
-    display: unset;
-  }
   .nav-links {
+    li {
+      &:nth-child(1) {
+        display: unset;
+        transition: all 0.5s ease 0.2s;
+      }
+      opacity: 0;
+      a {
+        font-size: 25px;
+      }
+      &:nth-child(2) {
+        transition: all 0.5s ease 0.4s;
+      }
+      &:nth-child(3) {
+        transition: all 0.5s ease 0.6s;
+      }
+      &:nth-child(4) {
+        transition: all 0.5s ease 0.8s;
+      }
+    }
     z-index: 2;
     position: absolute;
     right: 0;
@@ -222,28 +245,19 @@ nav {
     transition: all 1s ease-out;
     pointer-events: none;
   }
+  nav {
+    position: relative;
+  }
+  .cart {
+    display: none;
+  }
+  .hamburger {
+    display: unset;
+  }
   .nav-links.open {
     clip-path: circle(1000px at 90% -10%);
     -webkit-clip-path: circle(1000px at 90% -10%);
     pointer-events: all;
-  }
-  .nav-links li {
-    opacity: 0;
-  }
-  .nav-links li a {
-    font-size: 25px;
-  }
-  .nav-links li:nth-child(1) {
-    transition: all 0.5s ease 0.2s;
-  }
-  .nav-links li:nth-child(2) {
-    transition: all 0.5s ease 0.4s;
-  }
-  .nav-links li:nth-child(3) {
-    transition: all 0.5s ease 0.6s;
-  }
-  .nav-links li:nth-child(4) {
-    transition: all 0.5s ease 0.8s;
   }
   li.fade {
     opacity: 1;
